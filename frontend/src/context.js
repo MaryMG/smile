@@ -7,7 +7,9 @@ export const MyContext = createContext();
 class MyProvider extends Component {
   state = {
     loggedUser: false,
-    formSignup: {},
+    formSignup: {
+      
+    },
 
     loginForm: {
       email: "",

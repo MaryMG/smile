@@ -62,9 +62,11 @@ app.use(cookieParser());
 // Enable authentication using session + passport
 
 const index = require('./routes/index');
-const auth = require('./routes/auth')
-app.use('/', index);
-app.use('/auth', auth);
+const auth = require('./routes/auth');
+const indexPost = require('./routes/index.post');
+app.use('/api/', index);
+app.use('/api/auth', auth);
+app.use('/api/',indexPost)
 
 //const authRoutes = require('./routes/auth');
 //app.use('/auth', authRoutes);

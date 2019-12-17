@@ -25,7 +25,7 @@ const MY_SERVICE = {
   },
 
   logout: () => {
-    return service.get('/auth/logout')
+    return service.post('/auth/logout')
   },
 
   getPosts: () => {

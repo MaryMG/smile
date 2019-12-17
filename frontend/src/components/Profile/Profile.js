@@ -58,7 +58,7 @@ render() {
                                    return (
                                   <>
                                   <div>
-                                    <h1>Perfil</h1>
+                                    <h2>Perfil</h2>
                                   <h3>Nombre:{context.state.user.username}</h3>
                                   <h3 >Cédula Profesional:{context.state.user.cedula}</h3>
                                   <h3>Télefono:{context.state.user.phone}</h3>
@@ -74,7 +74,7 @@ render() {
                                   );
                                   case "Paciente": return (
                                   <>
-                                  <h1>Perfil</h1>
+                                  <h2>Perfil</h2>
                                   <h3>Nombre:{context.state.user.username}</h3>
                                   <h3 >Edad:{context.state.user.age}</h3> 
                                   
@@ -172,8 +172,6 @@ render() {
                                              <Button size="small">Actualizar</Button>
                                              <Button size="small">Eliminar</Button>
                                            </CardActions>
-
-
                                     </Card>
                                     
                                   </div>
@@ -181,6 +179,13 @@ render() {
                                   );
                                   case "Paciente": return (  
                                   <>
+                                  <h2>Doctores</h2>
+                                  {}
+                                  <Card>
+                                     <h3>Nombre:<p>{context.state.user.username}</p></h3>
+                                     <h3>Cédula Profesional:<p>{context.state.user.cedula}</p></h3>
+                                     <h3>Cel.<p>{context.state.user.phone}</p></h3>
+                                  </Card>
                                    
                                  
                                   </>);

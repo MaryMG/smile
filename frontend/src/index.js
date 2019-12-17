@@ -7,7 +7,9 @@ import MyProvider from './context'
 
 
 ReactDOM.render(
-    <MyProvider><Router /></MyProvider>,
+    <MyProvider>
+        <Router/>
+    </MyProvider>,
    
     document.getElementById('root'));
 

@@ -12,7 +12,7 @@ export default function Home() {
      
       <Link to="/signup"><Button variant="contained" color="primary">Paciente</Button></Link>
       <Link to="/signupsi"><Button variant="contained" color="primary">Psicologo</Button></Link>
-      <Link to="/login"><Button variant="contained" color="primary">Login</Button></Link>
+     
       </StyledImage>
       </div>
     

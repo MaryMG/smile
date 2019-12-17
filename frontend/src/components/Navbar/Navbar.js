@@ -4,8 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+
+import { Link } from "react-router-dom";
+import {NavLink }from "react-router-dom";
+import {MyContext} from "../../context"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,23 +21,55 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Smile
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <MyContext.Consumer> 
+      {context =>{
+        return (
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6" className={classes.title}>
+                <Link to="/">Smile</Link>
+                
+              </Typography>
+              {context.state.user.role === 'Doctor' && (
+                <NavLink exact to='/profile' activeClassName="navbar-active">
+                  Registro de Pacientes
+                </NavLink>
+              )}
+              {context.loggedUser && (
+                <Link to="/">
+                <Button
+                onClick = {() => 
+                  context.handleLogout(() => { 
+                  })
+                }
+                >LogOut
+              </Button>
+                </Link>
+               
+              )}
+               {!context.loggedUser && (
+               <Link to="/login">
+                 <Button variant="contained" color="primary">
+                   Login</Button>
+                   </Link>
+              
+               
+              )}
+
+
+             
+            </Toolbar>
+          </AppBar>
+        </div>
+        )
+      }}
+   
+    </MyContext.Consumer>
   );
 }
 

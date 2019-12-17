@@ -12,10 +12,14 @@ class MyProvider extends Component {
       email: "",
       password: ""
     },
-    user: {}
+    user: {},
+    infoDoctors:{}
   };
   
   componentDidMount() {
+    
+
+
     if (document.cookie) {
       MY_SERVICE.getUser()
         .then(({ data }) => {
@@ -69,10 +73,11 @@ class MyProvider extends Component {
 
   handleLogout = async cb => {
     await MY_SERVICE.logout();
-    
     window.localStorage.clear();
     this.setState({ loggedUser: false, user: {} });
     cb();
+    this.state.loginForm.email = ''
+    
   };
 
   render() {

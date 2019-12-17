@@ -17,20 +17,21 @@ export default class Profile extends Component {
   }
 
 componentDidMount() {
-  this.settingPosts()
+  this.settingPosts() 
 }
 
 settingPosts = async () => {
   const posts = await MY_SERVICE.getPosts()
   this.setState({posts: posts.data.post})
-  console.log(this.state.posts)
 }
 
 submitPost = async (e) => {
   e.preventDefault()
-  const post = await MY_SERVICE.submitPost(this.state.singlePost)
-  this.setState({posts: {...this.state.posts, post}})
-  console.log(this.state.posts)
+  const {data: post} = await MY_SERVICE.submitPost(this.state.singlePost)
+  this.setState(prevState => ({
+    ...prevState,
+    posts: [post, ...prevState.posts ]
+  }))
 }
 
 handleInput = (e, obj) => {
@@ -42,9 +43,9 @@ handleInput = (e, obj) => {
 
 
 
-
-
 render() {
+  const {posts} = this.state
+  let postis = Object.keys(posts)
     return (
         <MyContext.Consumer>
             {context => (
@@ -84,13 +85,13 @@ render() {
                             }
                           </Grid>   
                           <Grid item xs={12} sm={3}>
-                               <h1>Crear Post</h1>
                              {
                               (() => {
                                 switch (context.state.user.role) {
                                   case "Doctor":   
                                     return (
                                       <>
+                                      <h1>Crear Post</h1>
                                         <div>
                                           <form onSubmit={e => {
                                             this.submitPost(e); 
@@ -104,32 +105,47 @@ render() {
                                                 name="title" 
                                                 onChange={e => this.handleInput(e, "singlePost")}
                                                 value={this.state.posts.title}
-                                              />
-                                       <TextField
-                                       id="description"
-                                       label="Descripción" 
-                                       variant="outlined"
-                                       type="text"
-                                       name="description"
-                                       onChange={e => this.handleInput(e, "singlePost")}
-                                       value={this.state.posts.description}
-                                        />
-                                  <Button 
-                                   variant="contained"
-                                   color="primary"
-                                   type='submit'
-                                   >Publicar
-                                  </Button>
-                                  
-                                  
-                            </form>
-                            </div>
+                                                />
+                                              <TextField
+                                              id="description"
+                                              label="Descripción" 
+                                              variant="outlined"
+                                              type="text"
+                                              name="description"
+                                              onChange={e => this.handleInput(e, "singlePost")}
+                                              value={this.state.posts.description}
+                                              />
+                                              <Button 
+                                              variant="contained"
+                                              color="primary"
+                                              type='submit'
+                                              >Publicar
+                                              </Button>
+                                          </form>
+                                        </div>
                                   </>
                                   );
                                   case "Paciente": return (
                                   <>
-                                  <h2>Post</h2>  
-                                  </>);
+                                   <h2>Post</h2>
+                                    <div>
+                                  <Card >
+                                   { posts.length > 0 ? (
+                                     posts.map((post,i) => {
+                                     return (<CardContent key={i}>
+                                                  <h2>{post.title}</h2>
+                                                  <p>{post.description}</p>
+                                              </CardContent>)
+                                       })):(<div>Loading..</div>) }  
+                                        
+
+
+                                    </Card>
+                                    
+                                  </div>
+                                   
+                                  </>
+                                  );
                                 }
                               })()
                             }
@@ -143,18 +159,21 @@ render() {
                                    return (
                                   <>
                                  <div>
-                                    <Card >
-                                   {  this.state.posts ? ( this.state.posts.map((post,i) => {
-                                     return  <CardContent key={i}>
-                                          <h2>{post.title}</h2>
-                                          <p>{post.description}</p>
-                                      </CardContent>
-                                       }) ): (<div>Loading...</div>)   }  
-                                       
-                                           <CardActions>
-                                             <Button size="small">Actualizar</Button>
-                                             <Button size="small">Eliminar</Button>
-                                           </CardActions>    
+                                  <Card >
+                                   { posts.length > 0 ? (
+                                     posts.map((post,i) => {
+                                     return (<CardContent key={i}>
+                                                  <h2>{post.title}</h2>
+                                                  <p>{post.description}</p>
+                                              </CardContent>)
+                                       })):(<div>Loading..</div>) }  
+                                        
+                                        <CardActions>
+                                             <Button size="small">Actualizar</Button>
+                                             <Button size="small">Eliminar</Button>
+                                           </CardActions>
+
+
                                     </Card>
                                     
                                   </div>
@@ -162,9 +181,8 @@ render() {
                                   );
                                   case "Paciente": return (  
                                   <>
-                                  <h1>Doctores</h1>
-                                  <h3>Nombre:{context.state.user.username}</h3>
-                                  <h3 >Edad:{context.state.user.age}</h3> 
+                                   
+                                 
                                   </>);
                                 }
                               })()

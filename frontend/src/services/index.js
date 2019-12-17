@@ -26,6 +26,15 @@ const MY_SERVICE = {
 
   logout: () => {
     return service.get('/auth/logout')
+  },
+
+  getPosts: () => {
+     return service.get('/post')
+  },
+
+  submitPost: (data) => {
+    console.log('creando un post', data)
+    return service.post('/post', data)
   }
   
 };

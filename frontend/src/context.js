@@ -7,16 +7,14 @@ export const MyContext = createContext();
 class MyProvider extends Component {
   state = {
     loggedUser: false,
-    formSignup: {
-      
-    },
-
+    formSignup: {},
     loginForm: {
       email: "",
       password: ""
     },
     user: {}
   };
+  
   componentDidMount() {
     if (document.cookie) {
       MY_SERVICE.getUser()
@@ -33,8 +31,11 @@ class MyProvider extends Component {
     const key = e.target.name;
     a[key] = e.target.value;
     this.setState({ obj: a });
-    console.log(this.state)
+    
   };
+ 
+ 
+  
 
   handleSignup = async e => {
     e.preventDefault();
@@ -47,10 +48,8 @@ class MyProvider extends Component {
 
   handleSignupDoctor = async e => {
     e.preventDefault();
-    console.log(this.state.formSignup)
     let signedUser = await MY_SERVICE.signup(Object.assign({role: 'Doctor'}, this.state.formSignup))
     if (signedUser) {
-      console.log(signedUser)
       return signedUser
     }
     Swal.fire(`Welcome ${this.state.formSignup.name}`, "User created", "success")
@@ -60,12 +59,11 @@ class MyProvider extends Component {
     e.preventDefault();
     MY_SERVICE.login(this.state.loginForm)
     .then(({ data }) => {
-      console.log(data)
       this.setState({ loggedUser: true, user: data.user })
       cb()
     })
     .catch(err => {
-      Swal.fire(`Quien sabe que paso`, '☠️', 'error')
+      Swal.fire(`Q`, '☠️', 'error')
     });
   };
 
@@ -90,7 +88,8 @@ class MyProvider extends Component {
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
           // user: this.state.user,
-          state: this.state
+          state: this.state,
+          settingPosts: this.settingPosts
         }}
       >
         {this.props.children}

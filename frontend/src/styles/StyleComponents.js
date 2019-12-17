@@ -8,5 +8,7 @@ background-repeat: no-repeat;
 background-size: cover;
 width: 100vw; 
 height:100vh;
+padding: 5px;
+margin-top: 0px;
 
 `;

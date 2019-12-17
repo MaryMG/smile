@@ -8,7 +8,7 @@ import LoginContainer from './components/Login/LoginContainer';
 import SignupPaciente from './components/Signup /SignupPaciente';
 import SignupPsicologo from './components/SignupPsicologo/SignupPsicologo';
 import Profile from './components/Profile/Profile';
-import Datos from './components/Profile/DatosUser';
+
 
 const Router = () => (
   <BrowserRouter>
@@ -19,7 +19,8 @@ const Router = () => (
       <Route exact path="/signupsi" component={SignupPsicologo} />
       <Route exact path="/login" component={LoginContainer} />
       <Route exact path="/profile" component={Profile} />
-      <Router exact path="/datos" component={Datos} />
+      
+   
       
       
       

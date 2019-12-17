@@ -13,6 +13,7 @@ exports.getPost = async (req, res) => {
 // };
 
 exports.createPost = async (req, res) => {
+  console.log(req.body)
   const { title, description } = req.body
   const { _id } = req.user;
     console.log(req.user)

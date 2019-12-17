@@ -10,10 +10,13 @@ const pacientesSchema = new Schema(
   description: {
     type: String,
   },
-  pacienteID:{
-    type: Schema.Types.ObjectId,
-    required: true
+  name:{
+    type:String,
   },
+  creatorID: {
+    type: Schema.Types.ObjectId,
+    ref:"User"  
+  }
 }, 
 {
   timestamps: {

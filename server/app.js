@@ -68,8 +68,9 @@ app.use('/api/', index);
 app.use('/api/auth', auth);
 app.use('/api/',indexPost)
 
-//const authRoutes = require('./routes/auth');
-//app.use('/auth', authRoutes);
+
+
+
 
       
 

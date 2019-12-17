@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+const {Schema, model}   = mongoose;
+
 
 const pacientesSchema = new Schema(
   {
@@ -7,11 +8,11 @@ const pacientesSchema = new Schema(
     type: String,
     required: true
   },
-  description: {
-    type: String,
-  },
   name:{
     type:String,
+  },
+  description: {
+    type: String,
   },
   creatorID: {
     type: Schema.Types.ObjectId,

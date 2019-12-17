@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const catchErrors = require("../middlewares/catchErrors");
 const {
-  createPost,
-  getPost,
-  updatePost,
-  deletePost
-} = require("../controllers/post.controller");
+  createPaciente,
+  getPaciente,
+  updatePaciente,
+  deletePaciente
+} = require("../controllers/registropacientes.controller");
 
 
 /* GET home page */
@@ -19,11 +19,12 @@ function isAuth(req, res, next) {
 }
 
 // Projects
-router.get("/post", catchErrors(getPost));
+router.get("/paciente", catchErrors(getPaciente));
 //router.get("/post/:id", catchErrors(getPost));
-router.post("/post", isAuth, catchErrors(createPost));
-router.patch("/post/:id", catchErrors(updatePost));
-router.delete("/post/:id", catchErrors(deletePost));
+router.post("/paciente", isAuth, catchErrors(createPaciente));
+router.patch("/paciente/:id", catchErrors(updatePaciente));
+router.delete("/paciente/:id", catchErrors(deletePaciente));
+
 
 
 module.exports = router;

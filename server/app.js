@@ -64,9 +64,11 @@ app.use(cookieParser());
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const indexPost = require('./routes/index.post');
+const registro = require ('./routes/registro_pacientes');
 app.use('/api/', index);
 app.use('/api/auth', auth);
 app.use('/api/',indexPost)
+app.use('/api/',registro)
 
 
 

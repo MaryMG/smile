@@ -1,8 +1,9 @@
 const Pacientes = require ('../models/Pacientes')
 
 exports.getPaciente = async (req, res) => {
-  const paciente = await Post.find().populate("tasks");
-  res.status(200).json({ paciente });
+  const { docId } = req.body
+  const paciente = await Pacientes.find({creatorID:docId}).populate("tasks");
+  res.status(201).json({ paciente });
 };
 
 // exports.getPaciente = async (req, res) => {
@@ -12,7 +13,7 @@ exports.getPaciente = async (req, res) => {
 // };
 
 exports.createPaciente = async (req, res) => {
-  console.log(req.body)
+  
   const { title, description, name } = req.body
   const { _id } = req.user;
 

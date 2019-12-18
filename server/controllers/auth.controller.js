@@ -51,5 +51,12 @@ exports.getUsers = async (req,res) =>{
   
 }
 
+exports.getDoctors = async (req,res) =>{
+  
+  const doctors =  await User.find({role: 'Doctor'})
+  res.status(200).json({ doctors })
+  
+}
+
 
 

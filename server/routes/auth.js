@@ -10,6 +10,7 @@ const {
   logout,
   //upload,
   //edit,
+  getDoctors,
   loggedin
 } = require('../controllers/auth.controller')
 
@@ -18,7 +19,7 @@ const {
 router.post('/signup', whatever, signup);
 router.post('/login', passport.authenticate('local'), login);
 router.post('/logout', logout);
-
+router.get('/getDoctors', getDoctors);
 //router.post('/edit', edit);
 //router.post("/upload", uploadCloud.single("photoURL"), upload);
 router.get('/loggedin', isAuth, loggedin)

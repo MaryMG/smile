@@ -32,9 +32,23 @@ const MY_SERVICE = {
      return service.get('/post')
   },
 
+  getRegistro: (docId) => {
+    return service.post('/registro', {docId})
+ },
+
+  getDoctors: () => {
+    return service.get('/auth/getDoctors')
+  },
+
   submitPost: (data) => {
-    console.log('creando un post', data)
+    
     return service.post('/post', data)
+  },
+
+  submitRegistro: (data) => {
+   
+    return service.post('/setregistro', data)
+
   }
   
 };

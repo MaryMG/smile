@@ -46,6 +46,7 @@ export default function SignupPaciente(props) {
       id="email" 
       label="Correo" 
       variant="outlined"
+      autoComplete= "email"
       type="email" 
       name="email"
       value = {context.formSignup.email}

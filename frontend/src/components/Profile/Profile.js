@@ -13,7 +13,8 @@ export default class Profile extends Component {
 
   state = {
     posts:[],
-    singlePost: {}
+    singlePost: {},
+    doctors: []
   }
 
 componentDidMount() {
@@ -22,7 +23,8 @@ componentDidMount() {
 
 settingPosts = async () => {
   const posts = await MY_SERVICE.getPosts()
-  this.setState({posts: posts.data.post})
+  const doctors = await MY_SERVICE.getDoctors()
+  this.setState({posts: posts.data.post, doctors: doctors.data.doctors})
 }
 
 submitPost = async (e) => {
@@ -45,7 +47,7 @@ handleInput = (e, obj) => {
 
 render() {
   const {posts} = this.state
-  let postis = Object.keys(posts)
+  
     return (
         <MyContext.Consumer>
             {context => (
@@ -128,21 +130,18 @@ render() {
                                   case "Paciente": return (
                                   <>
                                    <h2>Post</h2>
-                                    <div>
-                                  <Card >
-                                   { posts.length > 0 ? (
-                                     posts.map((post,i) => {
-                                     return (<CardContent key={i}>
-                                                  <h2>{post.title}</h2>
-                                                  <p>{post.description}</p>
-                                              </CardContent>)
-                                       })):(<div>Loading..</div>) }  
-                                        
+                                   {posts.length > 0 ? (
+                                      posts.map((post,i) => {
+                                        return ( 
+                                        <Card key={i}>
+                                          <h2>{post.title}</h2>
+                                          <p>{post.description}</p>
+                                        </Card> 
+                                        )
 
-
-                                    </Card>
-                                    
-                                  </div>
+                                      })
+                                    ): (<div>Loading...</div>)
+                                  }
                                    
                                   </>
                                   );
@@ -157,37 +156,35 @@ render() {
                                 switch (context.state.user.role) {
                                   case "Doctor":   
                                    return (
-                                  <>
-                                 <div>
-                                  <Card >
-                                   { posts.length > 0 ? (
-                                     posts.map((post,i) => {
-                                     return (<CardContent key={i}>
-                                                  <h2>{post.title}</h2>
-                                                  <p>{post.description}</p>
-                                              </CardContent>)
-                                       })):(<div>Loading..</div>) }  
-                                        
-                                        <CardActions>
-                                             <Button size="small">Actualizar</Button>
-                                             <Button size="small">Eliminar</Button>
-                                           </CardActions>
-                                    </Card>
-                                    
-                                  </div>
+                                  <> 
+                                  {posts.length > 0 ? (
+                                      posts.map((post,i) => {
+                                        return ( 
+                                        <Card key={i}>
+                                          <h2>{post.title}</h2>
+                                          <p>{post.description}</p>
+                                            <CardActions>
+                                              <Button size="small">Actualizar</Button>
+                                              <Button size="small">Eliminar</Button>
+                                            </CardActions>
+                                        </Card> 
+                                        )
+                                      })
+                                    ): (<div>Loading...</div>)
+                                  }
                                   </>
                                   );
                                   case "Paciente": return (  
                                   <>
                                   <h2>Doctores</h2>
-                                  {}
-                                  <Card>
-                                     <h3>Nombre:<p>{context.state.user.username}</p></h3>
-                                     <h3>Cédula Profesional:<p>{context.state.user.cedula}</p></h3>
-                                     <h3>Cel.<p>{context.state.user.phone}</p></h3>
-                                  </Card>
-                                   
-                                 
+                                  { this.state.doctors.map ((doctors, i) => {
+                                    return(<Card key={i}> 
+                                    <h3>Nombre:<p>{doctors.username}</p></h3>
+                                    <h3>Cédula Profesional:<p>{doctors.cedula}</p></h3>
+                                    <h3>Cel.<p>{doctors.phone}</p></h3>
+                                    </Card>
+                                    )})  
+                                  }
                                   </>);
                                 }
                               })()

@@ -35,6 +35,7 @@ export default function LoginContainer (props) {
       id="email"
       label="Correo" 
       variant="outlined" 
+      autoComplete= "email"
       type="email" 
       name="email"
       value={context.loginForm.email}
@@ -57,3 +58,4 @@ export default function LoginContainer (props) {
    )
   
 }
+

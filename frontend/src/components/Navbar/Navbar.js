@@ -4,10 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
 import { Link } from "react-router-dom";
-import {NavLink }from "react-router-dom";
 import {MyContext} from "../../context"
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+
 export default function ButtonAppBar(props) {
   const classes = useStyles();
 
@@ -29,26 +30,27 @@ export default function ButtonAppBar(props) {
       {context =>{
         return (
         <div className={classes.root}>
-          <AppBar position="static">
+          <AppBar position="static" >
             <Toolbar>
-              <Typography variant="h6" className={classes.title}>
-                <Link to="/">Smile</Link>
-                
+              <Typography variant="h5" className={classes.title}>
+                <Link to="/">Smile</Link>   
               </Typography>
               {context.state.user.role === 'Doctor' && (
-                <NavLink exact to='/profile' activeClassName="navbar-active">
-                  Registro de Pacientes
-                </NavLink>
+                <Link to="/registro">Registro Pacientes</Link>
               )}
               {context.loggedUser && (
+                <Link to="/profile">Perfil</Link> 
+              )}
+
+              {context.loggedUser && (
                 <Link to="/">
-                <Button
+                <Button 
                 onClick = {() => 
                   context.handleLogout(() => { 
                   })
                 }
                 >LogOut
-              </Button>
+                </Button>
                 </Link>
                
               )}
@@ -60,9 +62,6 @@ export default function ButtonAppBar(props) {
               
                
               )}
-
-
-             
             </Toolbar>
           </AppBar>
         </div>

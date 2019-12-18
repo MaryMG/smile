@@ -12,14 +12,13 @@ class MyProvider extends Component {
       email: "",
       password: ""
     },
+    registros:[],
     user: {},
     infoDoctors:{}
   };
   
   componentDidMount() {
     
-
-
     if (document.cookie) {
       MY_SERVICE.getUser()
         .then(({ data }) => {
@@ -38,9 +37,6 @@ class MyProvider extends Component {
     
   };
  
- 
-  
-
   handleSignup = async e => {
     e.preventDefault();
     let signedUser = await MY_SERVICE.signup(this.state.formSignup)
@@ -67,9 +63,15 @@ class MyProvider extends Component {
       cb()
     })
     .catch(err => {
-      Swal.fire(`Q`, '☠️', 'error')
+      Swal.fire('email o contraseña incorrecta')
     });
   };
+  settingRegistro = async () => {
+    //console
+      const {data} = await MY_SERVICE.getRegistro(this.state.user._id)
+      console.log(data)
+      this.setState({registros: data.paciente})
+    }
 
   handleLogout = async cb => {
     await MY_SERVICE.logout();
@@ -81,6 +83,7 @@ class MyProvider extends Component {
   };
 
   render() {
+    console.log(this.state.registros)
     return (
       <MyContext.Provider
         value={{
@@ -94,7 +97,10 @@ class MyProvider extends Component {
           handleLogout: this.handleLogout,
           // user: this.state.user,
           state: this.state,
-          settingPosts: this.settingPosts
+          settingPosts: this.settingPosts,
+          registros: this.state.registros,
+          settingRegistro: this.settingRegistro
+        
         }}
       >
         {this.props.children}

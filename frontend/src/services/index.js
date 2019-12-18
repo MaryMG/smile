@@ -3,7 +3,7 @@ let baseURL;
 
 process.env.NODE_ENV === 'production'
   ? (baseURL = 'here should be your production endpoint')
-  : (baseURL = 'http://localhost:3000/api');
+  : (baseURL = 'https://affectionate-euclid-efea3b.netlify.com/api');
 
 const service = axios.create({ withCredentials: true, baseURL });
 

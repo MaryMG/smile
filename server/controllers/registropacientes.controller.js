@@ -6,12 +6,6 @@ exports.getPaciente = async (req, res) => {
   res.status(201).json({ paciente });
 };
 
-// exports.getPaciente = async (req, res) => {
-//   const { id } = req.params;
-//   const post = await Post.findById(id).populate("tasks");
-//   res.status(200).json(post);
-// };
-
 exports.createPaciente = async (req, res) => {
   
   const { title, description, name } = req.body

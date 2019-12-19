@@ -18,11 +18,6 @@ exports.logout = (req, res) => {
   res.json({ msg: "The user logout successfully" });
 }
 
-/*
-exports.getProfile = async (req, res, next) => {
-  const user = await User.findById(req.user._id)
-  res.status(200).json({ user })
-}*/
 exports.loggedin = (req, res, next) => {
   console.log(req.user._id)
   User.findById(req.user._id)

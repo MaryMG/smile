@@ -19,9 +19,9 @@ function isAuth(req, res, next) {
 }
 
 // Projects
-router.post("/registro", catchErrors(getPaciente));
+router.post("/registros", catchErrors(getPaciente));
 //router.get("/post/:id", catchErrors(getPost));
-router.post("/setregistro", isAuth, catchErrors(createPaciente));
+router.post("/registro", isAuth, catchErrors(createPaciente));
 router.patch("/registro/:id", catchErrors(updatePaciente));
 router.delete("/registro/:id", catchErrors(deletePaciente));
 

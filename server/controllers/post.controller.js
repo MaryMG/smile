@@ -6,12 +6,6 @@ exports.getPost = async (req, res) => {
   res.status(200).json({ post });
 };
 
-// exports.getPost = async (req, res) => {
-//   const { id } = req.params;
-//   const post = await Post.findById(id).populate("tasks");
-//   res.status(200).json(post);
-// };
-
 exports.createPost = async (req, res) => {
   console.log(req.body)
   const { title, description } = req.body

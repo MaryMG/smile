@@ -26,7 +26,7 @@ export default function Home() {
     <div >
      <StyledImage>
 
-       <h1>Slogan</h1>
+       
        <Grid container spacing={1}>
       <Grid item xs={3}>
       </Grid> 

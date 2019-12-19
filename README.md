@@ -1,6 +1,9 @@
 # smile
 #Smile es una api que pretende ayudar a personas con problemas como: depresión, estres y ansiedad.
 Esta api es solo un intermediario entre paciente y un doctor.
+Es una api completamenbte altruista ya que existen algunas personas que no cuentan con los recursos suficientes 
+para solventar las consultas con los doctores.
+Es un intermediario ya que el doctor necesita hablar con el paciente de frrente para poder evaluar no sólo lo que dice, si no sus facciones.  
 
 #¿Cómo funciona?
 #Registro

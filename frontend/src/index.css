@@ -11,4 +11,55 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.image_outer_container {
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 50%;
+  position: relative; }
 
+.image_inner_container {
+  border-radius: 50%;
+  padding: 5px;
+  background-image: linear-gradient(to top, #37ECBA 0%, #72AFD3 100%); }
+
+.image_inner_container img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 5px solid white; }
+
+.image_inner_container-salva {
+  border-radius: 50%;
+  padding: 5px;
+  background-image: linear-gradient(to top, #ffb199 100%); }
+
+.image_inner_container-salva img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 5px solid white; }
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px; }
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px; }
+
+.profile-usertitle-rol {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px; }
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px; }
+
+.margen{
+  padding:50px;
+}

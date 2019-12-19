@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, hslToRgb } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +9,15 @@ import {MyContext} from "../../context"
 
 const styleLink = {
   textDecoration: 'none'
+}
+const styleNadbar = {
+  backgroundColor :'#f2f5f5',
+  
+}
+const styledImage ={
+  width:'80px',
+  padding:'2px',
+  marginLeft:'10px',
 }
 
 
@@ -35,20 +44,24 @@ export default function ButtonAppBar(props) {
       {context =>{
         return (
         <div className={classes.root}>
-          <AppBar position="static" >
+          <AppBar position="static" style={styleNadbar}  >
+            
             <Toolbar>
-              <Typography variant="h5" className={classes.title}>
-                <Link to="/">Smile</Link>   
-              </Typography>
+                <Link to="/">
+                  <img style={styledImage} src="/image/logo_smile.png"></img>
+                </Link> 
+              <Typography  className={classes.title}>
+            
+                </Typography>
               {context.state.user.role === 'Doctor' && (
-                <Link to="/registro">Registro Pacientes</Link>
+                <Link style={styleLink} to="/registro">Registro Pacientes</Link>
               )}
               {context.loggedUser && (
-                <Link to="/profile">Perfil</Link> 
+                <Link to="/profile" style={styleLink}>Perfil</Link> 
               )}
 
               {context.loggedUser && (
-                <Link to="/">
+                <Link to="/" style={styleLink}>
                 <Button 
                 onClick = {() => 
                   context.handleLogout(() => { 

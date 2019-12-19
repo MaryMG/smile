@@ -4,10 +4,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import MY_SERVICE from '../../services/index';
 import Avatar from '@material-ui/core/Avatar';
+import {StyledProfile} from '../../styles/StyleComponents';
 
 const styleScroll = {
   height: '60vh',
@@ -18,6 +17,11 @@ const styleScroll = {
 const styleCard ={
   margin: '5px'
 }
+const styleColor ={
+  color: 'gray'
+}
+
+
 
 export default class Profile extends Component {
 
@@ -68,29 +72,65 @@ render() {
                                 switch (context.state.user.role) {
                                   case "Doctor":   
                                    return (
-                                  <>
-                                  <Grid >
-                                    <h2>Perfil</h2>
-                                    <Avatar>H</Avatar>
-                                    <h3>Nombre:{context.state.user.username}</h3>
-                                    <h3 >Cédula Profesional:{context.state.user.cedula}</h3>
-                                    <h3>Télefono:{context.state.user.phone}</h3>
-                                  </Grid>
+                                 
+                                  <StyledProfile>
+                                    <>
+                                    <div>
+                                      <Grid>
+                                        <h2>Perfil</h2>
+                                      <section className="sectionprojects margen">
+                                          <div className="containerimg">
+		                                        <div className="d-flex justify-content-center h-100">
+			                                          <div clasName="image_outer_container">
+				                                            <div className="image_inner_container-salva">
+                                                        <img src="/image/logo_smile.png"></img>
+			                                       	      </div>
+                                                      <div className="profile-usertitle">
+				                                                <div className="profile-usertitle-name">
+                                                        <h4>Nombre:{context.state.user.username}</h4>
+                                                        <h4>Cédula Profesional:<p>{context.state.user.cedula}</p></h4>
+                                                         <h4>Télefono:<p>{context.state.user.phone}</p></h4>
+					                                              </div>                                                 
+			                                              </div> 
+		                                                   </div>
+	                                                   </div>
+                                                     </div>
+                                        </section>     
+                                      </Grid>
+                                    </div>
+                                    </>
+                                  </StyledProfile>
                                   
-                                  
-                                  <div>
-                                  
-                                  <Button variant="contained" color="primary">Registro de Pacientes</Button>
-                                    
-                                  </div>
-                                  </>
                                   );
                                   case "Paciente": return (
                                   <>
-                                  <h2>Perfil</h2>
-                                  <h3>Nombre:{context.state.user.username}</h3>
-                                  <h3 >Edad:{context.state.user.age}</h3> 
-                                  
+                                  <StyledProfile>
+                                    <>
+                                    <div>
+                                      <Grid>
+                                        <h2>Perfil</h2>
+                                      <section className="sectionprojects">
+                                          <div className="containerimg">
+		                                        <div className="d-flex justify-content-center h-100">
+			                                          <div clasName="image_outer_container">
+				                                            <div className="image_inner_container-salva">
+                                                        <img src="/image/logo_smile.png"></img>
+			                                       	      </div>
+                                                      <div className="profile-usertitle">
+				                                                <div className="profile-usertitle-name">
+                                                        <h3>Nombre:{context.state.user.username}</h3>
+                                                        <h3 >Edad:{context.state.user.age}</h3> 
+					                                              </div>                                                 
+			                                              </div> 
+		                                                   </div>
+	                                                   </div>
+                                                     </div>
+                                        </section>     
+                                      </Grid>
+                                    </div>
+                                    </>
+                                  </StyledProfile>
+            
                                   </>
                                   );
                                 }
@@ -104,8 +144,10 @@ render() {
                                   case "Doctor":   
                                     return (
                                       <>
+                                      <StyledProfile>
                                       <h1>Crear Post</h1>
                                         <div>
+                                          
                                           <form onSubmit={e => {
                                             this.submitPost(e); 
                                               this.props.history.push('/profile')
@@ -140,15 +182,19 @@ render() {
                                               </Button>
                                           </form>
                                         </div>
+                                        </StyledProfile>
                                   </>
                                   );
                                   case "Paciente": return (
                                   <>
-                                   <h2>Post</h2>
+                                  <StyledProfile>
+                                  <h2>Post</h2>
+                                  <div style={styleScroll} >
+                                   
                                    {posts.length > 0 ? (
                                       posts.map((post,i) => {
                                         return ( 
-                                        <Card key={i}>
+                                        <Card key={i} style={ styleCard}>
                                           <h2>{post.title}</h2>
                                           <p>{post.description}</p>
                                         </Card> 
@@ -157,7 +203,8 @@ render() {
                                       })
                                     ): (<div>Loading...</div>)
                                   }
-                                   
+                                   </div>
+                                   </StyledProfile> 
                                   </>
                                   );
                                 }
@@ -190,14 +237,18 @@ render() {
                                   case "Paciente": return (  
                                   <>
                                   <h2>Doctores</h2>
+                                  <div style={styleScroll}>
                                   { this.state.doctors.map ((doctors, i) => {
-                                    return(<Card key={i}> 
+
+                                    return(
+                                    <Card key={i} style={ styleCard}> 
                                     <h3>Nombre:<p>{doctors.username}</p></h3>
                                     <h3>Cédula Profesional:<p>{doctors.cedula}</p></h3>
                                     <h3>Cel.<p>{doctors.phone}</p></h3>
                                     </Card>
                                     )})  
                                   }
+                                  </div>
                                   </>);
                                 }
                               })()

@@ -30,11 +30,9 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:3001',
-       process.env.FRONTEND_POINT
-    ]
+    origin: 
+      'https://affectionate-euclid-efea3b.netlify.com'
+   
   })
 )
 

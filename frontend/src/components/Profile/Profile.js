@@ -7,6 +7,17 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import MY_SERVICE from '../../services/index';
+import Avatar from '@material-ui/core/Avatar';
+
+const styleScroll = {
+  height: '60vh',
+  overflow: 'scroll',
+  marginTop: '50px'
+  
+}
+const styleCard ={
+  margin: '5px'
+}
 
 export default class Profile extends Component {
 
@@ -58,13 +69,14 @@ render() {
                                   case "Doctor":   
                                    return (
                                   <>
-                                  <div>
+                                  <Grid >
                                     <h2>Perfil</h2>
-                                  <h3>Nombre:{context.state.user.username}</h3>
-                                  <h3 >Cédula Profesional:{context.state.user.cedula}</h3>
-                                  <h3>Télefono:{context.state.user.phone}</h3>
-                                  <h3>Especialidad:{context.state.user.username}</h3>
-                                  </div>
+                                    <Avatar>H</Avatar>
+                                    <h3>Nombre:{context.state.user.username}</h3>
+                                    <h3 >Cédula Profesional:{context.state.user.cedula}</h3>
+                                    <h3>Télefono:{context.state.user.phone}</h3>
+                                  </Grid>
+                                  
                                   
                                   <div>
                                   
@@ -107,6 +119,8 @@ render() {
                                                 onChange={e => this.handleInput(e, "singlePost")}
                                                 value={this.state.posts.title}
                                                 />
+                                                <br/>
+                                                <br/>
                                               <TextField
                                               id="description"
                                               label="Descripción" 
@@ -116,6 +130,8 @@ render() {
                                               onChange={e => this.handleInput(e, "singlePost")}
                                               value={this.state.posts.description}
                                               />
+                                              <br/>
+                                              <br/>
                                               <Button 
                                               variant="contained"
                                               color="primary"
@@ -149,23 +165,21 @@ render() {
                             }
                           </Grid>
 
-                          <Grid item xs={12} sm={3}>
+                          <Grid style={styleScroll} item xs={12} sm={3}>
                            {
                               (() => {
                                 switch (context.state.user.role) {
                                   case "Doctor":   
                                    return (
                                   <> 
+                                  <h2>Post</h2>
                                   {posts.length > 0 ? (
                                       posts.map((post,i) => {
                                         return ( 
-                                        <Card key={i}>
+                                        <Card style={ styleCard} key={i}>
                                           <h2>{post.title}</h2>
                                           <p>{post.description}</p>
-                                            <CardActions>
-                                              <Button size="small">Actualizar</Button>
-                                              <Button size="small">Eliminar</Button>
-                                            </CardActions>
+                                            
                                         </Card> 
                                         )
                                       })

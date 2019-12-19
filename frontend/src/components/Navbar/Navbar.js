@@ -7,6 +7,11 @@ import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import {MyContext} from "../../context"
 
+const styleLink = {
+  textDecoration: 'none'
+}
+
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -55,7 +60,7 @@ export default function ButtonAppBar(props) {
                
               )}
                {!context.loggedUser && (
-               <Link to="/login">
+               <Link style={styleLink} to="/login">
                  <Button variant="contained" color="primary">
                    Login</Button>
                    </Link>

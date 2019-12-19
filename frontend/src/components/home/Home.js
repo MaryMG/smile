@@ -25,18 +25,12 @@ export default function Home() {
 
     <div >
      <StyledImage>
-
-       
        <Grid container spacing={1}>
-      <Grid item xs={3}>
-      </Grid> 
       <Grid item xs={3}>
       <Link style={styleLink} to="/signup"><Button style={style} variant="contained" color="primary">Registro Paciente</Button></Link>
       </Grid> 
       <Grid item xs={3}>
-      <Link style={styleLink} to="/signupsi"><Button style={style}  variant="contained" color="primary">Registro Psicologo</Button></Link>
-      </Grid> 
-      <Grid item xs={3}>
+      <Link style={styleLink} to="/signupsi"><Button style={style}  variant="contained" color="primary">Registro Doctor</Button></Link>
       </Grid> 
       </Grid> 
   

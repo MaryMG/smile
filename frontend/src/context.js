@@ -67,9 +67,9 @@ class MyProvider extends Component {
     });
   };
   settingRegistro = async () => {
-    //console
+    
       const {data} = await MY_SERVICE.getRegistro(this.state.user._id)
-      console.log(data)
+      console.log(data, "data wave", this.state.user._id)
       this.setState({registros: data.paciente})
     }
 
@@ -95,7 +95,7 @@ class MyProvider extends Component {
           handleSignupDoctor: this.handleSignupDoctor,
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
-          // user: this.state.user,
+          user: this.state.user,
           state: this.state,
           settingPosts: this.settingPosts,
           registros: this.state.registros,

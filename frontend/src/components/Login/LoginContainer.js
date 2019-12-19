@@ -17,11 +17,6 @@ const useStyles = makeStyles(theme => ({
 export default function LoginContainer (props) {
   const classes = useStyles();
 
-  /*componentDidMount(){
-    if (context.loggedUser) {
-      return props.history.push('/profile')
-    }
-  } */
      return (
     <MyContext.Consumer>
       {context =>(

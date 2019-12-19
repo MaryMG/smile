@@ -9,6 +9,11 @@ import { MyContext } from '../../context';
 
 export default class RegistroPacientes extends Component {
 
+  constructor() {
+    super()
+    this.idUser = React.createRef()
+  }
+
   state = {
     singleRegistro: {
       title: '',
@@ -19,24 +24,23 @@ export default class RegistroPacientes extends Component {
    
 
   }
-  componentDidMount =  async () => {
-    const papas = await this.context.settingRegistro()
-    this.setState({registros:papas})
+  
+  async componentDidMount () {
+    
+    const {data} = await MY_SERVICE.getRegistro(this.idUser.current.value)
+    
+    this.setState({registros: [...this.state.registros, ...data.paciente]})
+    
   }
-  // settingRegistro = async () => {
-  //   const registros = await MY_SERVICE.getRegistro()
-  //   console.log(registros)
-  //   this.setState({registros: registros.data.registro})
-  // }
+ 
 
   submitRegistro = async (e) => {
     e.preventDefault()
     const {data: singleRegistro} = 
     await MY_SERVICE.submitRegistro(this.state.singleRegistro)
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       registros: [singleRegistro, ...this.state.registros]
-    }))
+    } )
   }
 
   handleInput = (e, obj) => {
@@ -56,7 +60,7 @@ export default class RegistroPacientes extends Component {
               this.submitRegistro (e);
               this.props.history.push('/registro')
               }}>
-          
+  
               <Grid tem xs={12} sm={6}>
                 <div>
                 <TextField 
@@ -103,13 +107,15 @@ export default class RegistroPacientes extends Component {
               <Grid tem xs={12} sm={6}>
                 
                   <h2>Pacientes</h2>
-                  {context.registros.map((registro, i) =>(
+                  <input type="hidden" value={context.user._id} ref={ this.idUser } />
+
+                    {this.state.registros.map( (registro, i) =>(
                       <Card key={i}>
                         <h3>Problema:{registro.title}</h3>
                         <h3 >Nombre del Pasiente{registro.name}</h3>
                         <h3>Descripción:{registro.description}</h3>
                       </Card>
-                    ))}
+                    ) )}
                 
               </Grid>
             </Grid>   
